@@ -120,27 +120,14 @@ DxfParser.prototype._parse = function(dxfString) {
 					continue;
 				}
 
-				if (curr.value === 'HEADER') {
-					log.debug('> HEADER');
-					dxf.header = parseHeader();
-					log.debug('<');
-				} else if (curr.value === 'BLOCKS') {
-					log.debug('> BLOCKS');
-					dxf.blocks = parseBlocks();
-					log.debug('<');
-				} else if(curr.value === 'ENTITIES') {
+				if(curr.value === 'ENTITIES') {
 					log.debug('> ENTITIES');
 					dxf.entities = parseEntities(false);
 					log.debug('<');
-				} else if(curr.value === 'TABLES') {
-					log.debug('> TABLES');
-					dxf.tables = parseTables();
-					log.debug('<');
 				} else if(curr.value === 'EOF') {
 					log.debug('EOF');
-				} else {
-					log.warn('Skipping section \'%s\'', curr.value);
 				}
+				
 			} else {
 				curr = scanner.next();
 			}
